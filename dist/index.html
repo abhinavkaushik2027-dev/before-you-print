@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Before You Print — A second look before the first copy.</title>
+  <meta name="description" content="Check your PDF for common print issues, review the details that matter, and download a clear pre-print report. Your file stays in your browser.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='9' fill='%232e4de6'/%3E%3Cpath d='M10 20l7 7 14-15' fill='none' stroke='white' stroke-width='4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="./" aria-label="Before You Print home"><span class="brand-mark">b<span>✓</span></span>before you print<span class="brand-dot">.</span></a><nav aria-label="Main navigation"><button class="text-button" id="about-button">What we check</button></nav></header>
+  <main>
+    <section class="intro"><div><h1>Check it before<br> <em>you print it.</em></h1><p>Spot common PDF mistakes before they reach the printer.</p></div></section>
+    <ol class="steps" aria-label="Check progress"><li class="active" id="step-1"><span>01</span> Add your file</li><li id="step-2"><span>02</span> Review findings</li><li id="step-3"><span>03</span> Final checklist</li></ol>
+    <section id="setup" class="workspace" aria-label="Check a PDF">
+      <div class="upload-panel">
+        <label class="dropzone" id="dropzone" for="file-input"><span class="file-symbol" aria-hidden="true">PDF<span>+</span></span><strong>Drop your PDF here</strong><span>or <u>browse files</u> from your device</span><small>PDF only · up to 20 MB · up to 20 pages</small><input type="file" id="file-input" accept="application/pdf,.pdf"></label>
+        <p class="privacy-line">Your file stays on your device. Nothing is uploaded.</p>
+        <div class="sample-line"><button id="sample-button" class="text-button">Can you spot the mistakes? Try a sample</button></div>
+      </div>
+      <details class="settings-panel" id="print-settings"><summary><span class="settings-action">Edit print settings</span><span class="settings-hint">Size, quality & margins</span><span class="settings-toggle" aria-hidden="true"></span></summary><div class="settings-fields">
+        <label for="project-type">What are you printing?</label><select id="project-type"><option value="invitation">Invitation</option><option value="poster">Poster or flyer</option><option value="label">Product label</option><option value="other">Something else</option></select>
+        <label for="size-preset">Intended finished size</label><select id="size-preset"><option value="document">Use PDF trim size</option><option value="a4">A4 · 210 × 297 mm</option><option value="a5">A5 · 148 × 210 mm</option><option value="5x7">Invitation · 127 × 177.8 mm</option><option value="custom">Custom size</option></select>
+        <div class="field-pair" id="custom-size" hidden><label>Width (mm)<input id="custom-width" type="number" min="10" max="2000" step="0.1" value="127"></label><label>Height (mm)<input id="custom-height" type="number" min="10" max="2000" step="0.1" value="178"></label></div>
+        <div class="field-pair"><label for="dpi">Image quality target<select id="dpi"><option value="300">300 DPI · close-up print</option><option value="150">150 DPI · large poster</option></select></label><label for="safe-margin">Text safety margin<select id="safe-margin"><option value="3">3 mm</option><option value="5">5 mm</option><option value="2">2 mm</option></select></label></div>
+        <label class="check-label"><input id="bleed-needed" type="checkbox" checked><span>Artwork runs to the edge<small>Check for at least 3 mm of declared bleed.</small></span></label>
+        <p class="settings-note">Your printer’s specifications come first. These settings are starting points.</p>
+        <fieldset class="advanced-settings"><legend>Text & production checks</legend>
+          <label class="check-label"><input id="ocr-enabled" type="checkbox" checked><span>Read text in images and outlined artwork<small>English OCR · runs locally · may take a few seconds per page</small></span></label>
+          <label class="check-label"><input id="spelling-enabled" type="checkbox" checked><span>Suggest spelling corrections<small>British English dictionary. Names and specialist terms need your review.</small></span></label>
+          <label for="colour-target">Printer’s colour requirement</label><select id="colour-target"><option value="unspecified">Not specified — identify colour spaces</option><option value="cmyk">Printer requests CMYK</option></select>
+          <p class="settings-note">Font embedding and colour-space inspection run on every file. No automatic colour conversion.</p>
+        </fieldset>
+        <fieldset class="advanced-settings"><legend>Correct details to compare <span>Optional</span></legend>
+          <p class="settings-note">Supply the approved wording. We check whether it appears in the document; you still confirm placement and meaning.</p>
+          <label for="reference-names">Correct names <small>One full name per line, up to 8</small></label><textarea id="reference-names" rows="2" maxlength="800" placeholder="Aarav Sharma&#10;Ananya Kapoor"></textarea>
+          <label for="reference-venue">Correct venue</label><input id="reference-venue" type="text" maxlength="150" placeholder="The Garden Room">
+          <label for="reference-date">Correct event date</label><input id="reference-date" type="date">
+          <label for="reference-details">Other exact details <small>One per line, up to 8: time, address, price or phone</small></label><textarea id="reference-details" rows="2" maxlength="800" placeholder="6:00 PM&#10;Entry ₹500"></textarea>
+          <label for="allowed-words">Approved words <small>Brands or specialist terms; one per line</small></label><textarea id="allowed-words" rows="2" maxlength="500" placeholder="Words the dictionary should accept"></textarea>
+        </fieldset>
+
+      </div></details>
+    </section>
+    <div id="notice" class="notice" role="alert" hidden></div>
+    <section id="processing" class="processing" hidden aria-live="polite"><span class="spinner"></span><h2>Giving your artwork a second look.</h2><p id="progress-label">Opening PDF…</p><progress id="progress" max="100" value="0"></progress><button id="cancel-button" class="text-button">Cancel check</button></section>
+    <section id="results" hidden aria-label="Print check results"></section>
+  </main>
+  <footer><span>A second check, not a print certification.</span><button id="privacy-button" class="text-button">Privacy & limitations</button></footer>
+  <dialog id="info-dialog"><button class="close-button" aria-label="Close information" id="close-dialog">×</button><div id="dialog-content"></div></dialog>
+  <script src="./vendor/pdf-lib.min.js"></script><script src="./vendor/jsQR.js"></script><script src="./vendor/ocr/tesseract.min.js"></script><script src="./vendor/spelling/spell.js"></script><script type="module" src="./app.js"></script>
+</body></html>
